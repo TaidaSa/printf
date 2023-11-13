@@ -1,52 +1,53 @@
 #include "main.h"
 
+/**
+ * _printf - Emulate the original.
+ *
+ * @format: Format by specifier.
+ *
+ * Return: count of chars.
+ */
 
 int _printf(const char *format, ...)
 {
-    int count= 0, i = 0, sum = 0, fIndex;
+	int i = 0, count = 0, fCount = 0;
+	va_list charList;
 
-    char *formats = "scd%";
+	va_start(charList, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
-    va_list charList;
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
 
-    form arrFormat[4]
-    {
-        {'s', _print_String},
-        {'c', _print_Char},
-        {'d', _print_Int},
-        {'%', _print_percent}
-    }
+	while (format[i] != '\0')
+	{
+		if (format[i] == '%')
+		{
+			if (!format[i + 1] || (format[i + 1] == ' ' && !format[i + 2]))
+			{
+				count = -1;
+				break;
+			}
+			i++;
+			fCount = _searchFormat(format[i], charList);
 
-    if(format == NULL || (format[0] == '%' && format[1] == '\0'))
-        return (-1);
-    
+			if (fCount == 0)
+				count += _myPutChar(format(i))
 
-    va_start(charList, format);
+					if (fCount == -1)
+						count = -1;
+		}
+		else
+		{
+			(count == -1) ? (_myPutChar(format[i])) : (count += _myPutChar(format[i]));
+			i++;
+		}
+		if (count != -1)
+			count += fCount;
+	}
 
-    while (format[i] != '\0')
-    {
-        if (format[i] == '%')
-        {
-            i++;
-            fIndex = _searchFormat(format[i], formats);
-            
-            if (fIndex >= 0)
-            {
-                count += arrFormat[fIndex]._function(charList);
-                sum += 2
-                i++;
-            }
-            else
-                _myPutChar('%');
-        }
-        else
-        {
-            _myPutChar(format[i]);
-            i++;
-        }
-    }
-    
-    va_end(charList);
+	va_end(charList);
 
-     return(i + count + sum);
+	return (count);
 }

@@ -1,11 +1,36 @@
 #include "main.h"
 
-int _searchFormat(char f, char *c)
+/**
+ * _searchFormat - function specifiers.
+ *
+ * @sf: search format.
+ * @args: arguments.
+ *
+ * Return: characters count.
+ */
+
+int _searchFormat(char sf, va_list args)
 {
-    for (int i = 0; c[i] != '\0'; i++)
-    {
-        if (c[i] == f)
-            return (i);
-    }
-    return (-1);
+	int i = 0, funCount = 0;
+
+	form arrFormat[] = {
+			{'s', _print_String},
+			{'c', _print_Char},
+			{'d', _print_Int},
+			{'%', _print_percent}};
+
+	while (arrFormat[i].f)
+	{
+		if (sf == arrFormat[i].f)
+			funCount += arrFormat[i].f(args);
+		i++;
+	}
+
+	if (funCount == 0)
+	{
+		funCount += _myPutChar('%');
+		funCount += _myPutChar(sf);
+	}
+
+	return (funCount);
 }

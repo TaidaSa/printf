@@ -10,16 +10,16 @@
 /**/
 typedef struct format
 {
-	char N;
-	int (*_function)(va_list);
+	char s;
+	int (*f)(va_list);
 } form;
 
 
 /*TASK 1 functions*/
 int _print_Char(va_list args);
 int _print_String(va_list args);
-int _printf_percent(va_list args);
-int _printf_Int(va_list args);
+int _print_percent(va_list args);
+int _print_Int(va_list args);
 
 /*_printf module*/
 int _printf(const char *format, ...);
