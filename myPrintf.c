@@ -31,8 +31,7 @@ int _printf(const char *format, ...)
 			}
 			fCount = _searchFormat(format[i + 1], charList);
 			if (fCount == 0)
-				count += _myPutChar(format[i]);
-
+				count += _myPutChar(format[i + 1]);
 			if (fCount == -1)
 				count = -1;
 			i++;
