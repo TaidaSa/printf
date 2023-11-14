@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include <stdio.h>
+
 /**
  * _printf - Emulate the original.
  *
@@ -35,14 +37,14 @@ int _printf(const char *format, ...)
 			if (fCount == -1)
 				count = -1;
 			i++;
+
+			count += fCount;
 		}
 		else
 		{
 			(count == -1) ? (_myPutChar(format[i])) : (count += _myPutChar(format[i]));
 		}
 		i++;
-		if (count != -1)
-			count += fCount;
 	}
 
 	va_end(charList);
