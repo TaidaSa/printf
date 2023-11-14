@@ -17,11 +17,12 @@ int _searchFormat(char sf, va_list args)
 			{'s', _print_String},
 			{'c', _print_Char},
 			{'d', _print_Int},
+			{'i', _print_Int},
 			{'%', _print_percent}};
 
 	while (arrFormat[i].f)
 	{
-		if (sf == arrFormat[i].f)
+		if (sf == arrFormat[i].s)
 			funCount += arrFormat[i].f(args);
 		i++;
 	}

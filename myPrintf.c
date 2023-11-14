@@ -29,20 +29,19 @@ int _printf(const char *format, ...)
 				count = -1;
 				break;
 			}
-			i++;
-			fCount = _searchFormat(format[i], charList);
-
+			fCount = _searchFormat(format[i + 1], charList);
 			if (fCount == 0)
-				count += _myPutChar(format(i))
+				count += _myPutChar(format[i]);
 
-					if (fCount == -1)
-						count = -1;
+			if (fCount == -1)
+				count = -1;
+			i++;
 		}
 		else
 		{
 			(count == -1) ? (_myPutChar(format[i])) : (count += _myPutChar(format[i]));
-			i++;
 		}
+		i++;
 		if (count != -1)
 			count += fCount;
 	}

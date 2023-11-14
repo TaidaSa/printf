@@ -20,7 +20,7 @@ int _print_Int(va_list args)
 	}
 
 	if (num < 10)
-		return (count += _myPutChar(num + '0'))
+		return (count += _myPutChar(num + '0'));
 
 				   numx = num;
 
